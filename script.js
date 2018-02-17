@@ -1,32 +1,32 @@
 var canvas = document.getElementById("myCanvas");
 var ctx = canvas.getContext("2d");
 var ballRadius = 10;
-//to move
 
-var x = canvas.width / 2;
-var y = canvas.height - 30;
-var dx = 2;
-var dy = -2;
-var paddleHeight = 10;
-var paddleWidth = 120;
-var paddleX = (canvas.width - paddleWidth) / 2;
-var rightPressed = false;
-var leftPressed = false;
-var brickRowCount = 5;
-var brickColumnCount = 7;
-var brickWidth = 80;
-var brickHeight = 15;
-var brickPadding = 10;
-var brickOffsetTop = 30;
-var brickOffsetLeft = 50;
 
-var score = 0;
-var lives = 3;
+var x = canvas.width / 2,
+    y = canvas.height - 350,
+    dx = 2,
+    dy = -2,
+    paddleHeight = 10,
+    paddleWidth = 120,
+    paddleX = (canvas.width - paddleWidth) / 2,
+    rightPressed = false,
+    leftPressed = false,
+    brickRowCount = 5,
+    brickColumnCount = 9,
+    brickWidth = 80;
+    brickHeight = 15,
+    brickPadding = 1,
+    brickOffsetTop = 30,
+    brickOffsetLeft = 0,
+    score = 0,
+    lives = 3,
 
 document.addEventListener("keydown", keyDownHandler, false);
 document.addEventListener("keyup", keyUpHandler, false);
 document.addEventListener("mousemove", mouseMoveHandler, false);
 
+// render bricks
 var bricks = [];
 for (c = 0; c < brickColumnCount; c++) {
     bricks[c] = [];
@@ -34,7 +34,7 @@ for (c = 0; c < brickColumnCount; c++) {
         bricks[c][r] = { x: 0, y: 0, status: 1 };
     }
 }
-
+// movement handlers
 function keyDownHandler(e) {
     if (e.keyCode == 39) {
         rightPressed = true;
@@ -59,7 +59,7 @@ function mouseMoveHandler(e) {
         paddleX = relativeX - paddleWidth / 2;
     }
 }
-
+// display functions
 function drawBall() {
     ctx.beginPath();
     ctx.arc(x, y, ballRadius, 0, 2 * Math.PI);
@@ -126,6 +126,7 @@ function drawLives() {
     ctx.fillText(`Lives ${lives}`, canvas.width - 65, 20);
 }
 
+// game loop
 function draw() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     drawBricks();
@@ -154,8 +155,8 @@ function draw() {
             } else {
                 x = canvas.width / 2;
                 y = canvas.height - 30;
-                dx = 2;
-                dy = -2;
+                dx = 3;
+                dy = -3;
                 paddleX = (canvas.width-paddleWidth) / 2;
             }
         }
