@@ -4,9 +4,9 @@ var ballRadius = 10;
 
 
 var x = canvas.width / 2,
-    y = canvas.height - 350,
-    dx = 2,
-    dy = -2,
+    y = canvas.height - 30,
+    dx = Math.random() * 8,
+    dy = -4,
     paddleHeight = 10,
     paddleWidth = 120,
     paddleX = (canvas.width - paddleWidth) / 2,
@@ -14,13 +14,13 @@ var x = canvas.width / 2,
     leftPressed = false,
     brickRowCount = 5,
     brickColumnCount = 9,
-    brickWidth = 80;
+    brickWidth = 80,
     brickHeight = 15,
     brickPadding = 1,
     brickOffsetTop = 30,
     brickOffsetLeft = 0,
     score = 0,
-    lives = 3,
+    lives = 3;
 
 document.addEventListener("keydown", keyDownHandler, false);
 document.addEventListener("keyup", keyUpHandler, false);
@@ -145,6 +145,8 @@ function draw() {
         if (x > paddleX && x < paddleX + paddleWidth) {
             if (y = y - paddleHeight) {
                 dy = -dy;
+                let angle = Math.random() * 8;
+                dx = (dx > 0) ? angle : -angle;
             }
         }
         else {
@@ -155,9 +157,9 @@ function draw() {
             } else {
                 x = canvas.width / 2;
                 y = canvas.height - 30;
-                dx = 3;
-                dy = -3;
-                paddleX = (canvas.width-paddleWidth) / 2;
+                dx = Math.random() * 8;
+                dy = -4;
+                paddleX = (canvas.width - paddleWidth) / 2;
             }
         }
     }
